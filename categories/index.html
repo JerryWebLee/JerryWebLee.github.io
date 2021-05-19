@@ -72,8 +72,10 @@
 </header>
 <div class="mdui-dialog" id="search">
   
-    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="请输入关键字"><input type="hidden" name="sitesearch" value="https://jerrywebleeblog.top"></form>
-    <div class="search-result"></div>
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
   
 </div>
   <aside id="sidebar" class="mdui-drawer mdui-drawer-full-height">
@@ -136,9 +138,7 @@
       </div>
       <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
         
-        
-        
-          <a href="javascript:;" class="mdui-list-item mdui-p-l-2 mdui-text-color-theme mdui-ripple" style="justify-content: center;">标签为空</a>
+        <a class="mdui-ripple sidebar_archives-link" href="/tags/git/" rel="tag">git<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/js/" rel="tag">js<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/vue/" rel="tag">vue<span class="mdui-ripple sidebar_archives-count">2</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端<span class="mdui-ripple sidebar_archives-count">2</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/%E5%90%8E%E7%AB%AF/" rel="tag">后端<span class="mdui-ripple sidebar_archives-count">1</span></a>
         
       </div>
     </div>
@@ -180,11 +180,11 @@
   <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
   <article class="mdui-card mdui-m-b-5">
     <header class="mdui-card-media">
-      <img src="/images/random/material-24.jpg" style="max-height: 450px;">
+      <img src="/images/random/material-22.jpg" style="max-height: 450px;">
       <div class="mdui-card-media-covered">
         <div class="mdui-card-primary">
           <div class="mdui-card-primary-title">categories</div>
-          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2021-05-18 / <i class="iconfont">&#xe601;</i> Jerry Web Lee</div>
+          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2021-05-18 / <i class="iconfont">&#xe601;</i> Jerry Web Lee &nbsp;&nbsp; <span id="busuanzi_container_page_pv" style="display: none;"><i class="iconfont">&#xe7fd;</i> <span id="busuanzi_value_page_pv"></span></span></div>
         </div>
       </div>
       <div class="mdui-card-menu">
@@ -196,7 +196,7 @@
             
             <li class="mdui-menu-item" disabled>
               
-                <img src="http://qr.liantu.com/api.php?w=246&m=10&text=https://jerrywebleeblog.top/categories/index.html">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACY0lEQVR42u3aQZLiQAwEQP7/6d0HMMNUqY1wENknDoCdfZAUkh7/vvo88PDw8PDw8PDwbsZ7xOf5V8+ff3jY0zef//P1U+p3w8PDw1vh/RFqR9/5jZH///C5eHh4eIu814H7NWP2WnnKSd4NDw8P7/68GTspnfHw8PC+lZcE/YSUlOB4eHh49+S1rdhiKBWnkNlV4uHh4e3z8iHT/ufV+R4eHh5ewGtPMqxK0kBeItdviIeHh/dmXh6I81K7XdKaLV3h4eHhfYqXDKLO26ztCuys1YuHh4e3wzsJ5demltkaQZT38PDw8N7Amz04CtNlU/iCBIOHh4f3Zl7bXMhL4Vnb9+RN8PDw8HZ4syWndgmgLaDb9gceHh7ePu+8ZZAXxyewYWLAw8PDu5R3bRF8nmbycVqxOoCHh4d3Ka9twp6U123iade58PDw8HZ4SUs3H4P9EbIPhmd5+sHDw8Pb4R0tOeUhuxxrzQprPDw8vE1e25iYLQ0kQX+2boWHh4e3w2vXqmZrrG2D+KRNjIeHh7fDa1sSV1HbJa3ouvHw8PAWeW2h3DZk2yubXT0eHh7eJi8P+vnwrF1jbRMPHh4e3md5+aj+fPyfD8bya8XDw8Pb4bWnfWQ++M9XWi/YKcPDw8M74D3ik4fy5CKSZw2XwPDw8PBWeO9rLly2SpW3MPDw8PAWeXmAvmqI1TYjjpau8PDw8D7Km5W8yaXkv/31m3h4eHg35p20ZfNxWp2W8PDw8BZ5ScmbBOt2RaAdm+Hh4eHdgTdrAcyWsWat3uLS8fDw8N7M+76Dh4eHh4eHh4d3g/MfQRLEcInwJMcAAAAASUVORK5CYII=">
               
             </li>
           </ul>
@@ -258,11 +258,21 @@
   <div class="mdui-p-y-1 mdui-text-center">
     Copyright &copy; 2020 - 2021 Jerry Web Lee<br>
     Powered by <a href="https://hexo.io/" target="_blank" class="mdui-text-color-theme-accent">Hexo</a>
+    <br>
+      <span id="busuanzi_container_site_pv" style="display: none;">
+        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+      </span>
+      <span class="post-meta-divider">|</span>
+      <span id="busuanzi_container_site_uv" style="display: none;">
+        本站访客数<span id="busuanzi_value_site_uv"></span>人
+      </span>
+      <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+      </script>
     
   </div>
 </footer>
   <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_upward</i></button>
-  
+  <script async src=""></script>
   
 <script src="/js/mdui.js"></script>
 <script src="/js/script.js"></script>

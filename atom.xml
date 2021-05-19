@@ -6,7 +6,7 @@
   <link href="https://jerrywebleeblog.top/atom.xml" rel="self"/>
   
   <link href="https://jerrywebleeblog.top/"/>
-  <updated>2021-05-18T14:00:49.216Z</updated>
+  <updated>2021-05-19T13:16:47.636Z</updated>
   <id>https://jerrywebleeblog.top/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://jerrywebleeblog.top/2021/05/18/21/44/blog2/"/>
     <id>https://jerrywebleeblog.top/2021/05/18/21/44/blog2/</id>
     <published>2021-05-18T13:44:06.000Z</published>
-    <updated>2021-05-18T14:00:49.216Z</updated>
+    <updated>2021-05-19T13:16:47.636Z</updated>
     
     <content type="html"><![CDATA[<h1 id="blog2"><a href="#blog2" class="headerlink" title="blog2"></a>blog2</h1>]]></content>
     
@@ -33,6 +33,14 @@
     
     
     
+    
+    <category term="vue" scheme="https://jerrywebleeblog.top/tags/vue/"/>
+    
+    <category term="前端" scheme="https://jerrywebleeblog.top/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="后端" scheme="https://jerrywebleeblog.top/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="git" scheme="https://jerrywebleeblog.top/tags/git/"/>
     
   </entry>
   
@@ -61,11 +69,17 @@
     <link href="https://jerrywebleeblog.top/2021/05/16/11/54/blog/"/>
     <id>https://jerrywebleeblog.top/2021/05/16/11/54/blog/</id>
     <published>2021-05-16T03:54:15.000Z</published>
-    <updated>2021-05-18T14:00:41.347Z</updated>
+    <updated>2021-05-19T13:39:17.440Z</updated>
     
     
     
     
+    
+    <category term="vue" scheme="https://jerrywebleeblog.top/tags/vue/"/>
+    
+    <category term="前端" scheme="https://jerrywebleeblog.top/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="js" scheme="https://jerrywebleeblog.top/tags/js/"/>
     
   </entry>
   
