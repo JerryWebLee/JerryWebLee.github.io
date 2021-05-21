@@ -6,7 +6,7 @@
   <link href="https://jerrywebleeblog.top/atom.xml" rel="self"/>
   
   <link href="https://jerrywebleeblog.top/"/>
-  <updated>2021-05-21T16:21:52.470Z</updated>
+  <updated>2021-05-21T16:25:04.974Z</updated>
   <id>https://jerrywebleeblog.top/</id>
   
   <author>
@@ -21,11 +21,17 @@
     <link href="https://jerrywebleeblog.top/2021/05/22/00/21/20210522js%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     <id>https://jerrywebleeblog.top/2021/05/22/00/21/20210522js%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</id>
     <published>2021-05-21T16:21:20.000Z</published>
-    <updated>2021-05-21T16:21:52.470Z</updated>
+    <updated>2021-05-21T16:25:04.974Z</updated>
     
     
     
     
+    <category term="前端" scheme="https://jerrywebleeblog.top/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+    <category term="javascript" scheme="https://jerrywebleeblog.top/tags/javascript/"/>
+    
+    <category term="设计模式" scheme="https://jerrywebleeblog.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
