@@ -110,7 +110,9 @@
       </div>
       <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
         
-        <a class="mdui-ripple sidebar_archives-link" href="/archives/2021/05/">五月 2021<span class="mdui-ripple sidebar_archives-count">1</span></a>
+        
+        
+          <a href="javascript:;" class="mdui-list-item mdui-p-l-2 mdui-text-color-theme mdui-ripple" style="justify-content: center;">归档为空</a>
         
       </div>
     </div>
@@ -123,7 +125,9 @@
       </div>
       <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
         
-        <a class="mdui-ripple sidebar_archives-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端<span class="mdui-ripple sidebar_archives-count">1</span></a>
+        
+        
+          <a href="javascript:;" class="mdui-list-item mdui-p-l-2 mdui-text-color-theme mdui-ripple" style="justify-content: center;">分类为空</a>
         
       </div>
     </div>
@@ -136,7 +140,9 @@
       </div>
       <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
         
-        <a class="mdui-ripple sidebar_archives-link" href="/tags/css/" rel="tag">css<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/jquery/" rel="tag">jquery<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/js/" rel="tag">js<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/vue/" rel="tag">vue<span class="mdui-ripple sidebar_archives-count">1</span></a>
+        
+        
+          <a href="javascript:;" class="mdui-list-item mdui-p-l-2 mdui-text-color-theme mdui-ripple" style="justify-content: center;">标签为空</a>
         
       </div>
     </div>
@@ -172,33 +178,77 @@
   </div>
 </aside>
   <main id="main" class="mdui-m-t-5 fadeIn animated">
-  <style>
-    #timeline{max-width:750px;margin:0 auto;padding:0 8px}
-    #timeline h2{margin:.6em 0}
-    #timeline a{position:relative;display:-webkit-box;display:-ms-flexbox;display:flex;padding:8px 0;text-decoration:none;color:inherit;word-break:break-word;-webkit-transition:all .28s ease;transition:all .28s ease}
-    #timeline a:before{content:'';position:absolute;top:0;left:24px;z-index:1;width:2px;height:8px;background:#9c27b0}
-    #timeline a:after{content:'';position:absolute;top:24px;left:24px;z-index:1;width:2px;height:calc(100% - 24px);background:#9c27b0}
-    #timeline a span:first-child{-ms-flex-negative:0;flex-shrink:0;width:64px;margin-left:48px}
-    #timeline a span:first-child:before{content:'';position:absolute;top:8px;left:17px;z-index:2;width:16px;height:16px;border-radius:8px;background:#9c27b0;-webkit-transform:scale(.5);transform:scale(.5);-webkit-transition:all .28s ease;transition:all .28s ease}
-    #timeline a:hover{background-color:rgba(0,0,0,.1)}
-    .mdui-theme-layout-dark #timeline a:hover{background-color:rgba(255,255,255,.1)}
-    #timeline a:hover span:first-child:before{-webkit-transform:scale(.8);transform:scale(.8)}
-    #timeline a .mdui-icon{padding-left:8px;font-size:1em;color:#9c27b0;-webkit-transform:scale(1.5);transform:scale(1.5)}
-  </style>
-  <article id="timeline">
-    
-    
-      
-      
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
+  <article class="mdui-card mdui-m-b-5">
+    <header class="mdui-card-media">
+      <img src="/images/random/material-18.jpg" style="max-height: 450px;">
+      <div class="mdui-card-media-covered">
+        <div class="mdui-card-primary">
+          <div class="mdui-card-primary-title">timeline</div>
+          <div class="mdui-card-primary-subtitle">
+            <i class="iconfont">&#xe697;</i> 
+            2021-05-18 / <i class="iconfont">&#xe601;</i> Jerry Web Lee
+            
+              &nbsp;&nbsp; 
+              <span id="busuanzi_container_page_pv" style="display: none;">
+                <i class="iconfont">&#xe7fd;</i>
+                <span id="busuanzi_value_page_pv"></span>
+              </span>
+              <!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+              </script> -->
+            
+          </div>
+        </div>
+      </div>
+      <div class="mdui-card-menu">
         
-        <h2>2021</h2>
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#qrcode', align: 'right'}"><i class="mdui-icon material-icons">devices</i></button>
+          <ul class="mdui-menu" id="qrcode">
+            
+              <li class="mdui-menu-item"><a class="mdui-text-center mdui-ripple">发送到手机</a></li>
+            
+            <li class="mdui-menu-item" disabled>
+              
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACaklEQVR42u3aQXLCMAwFUO5/6XbbmTbmS0qc0HlZMSEYPy+w+Nbr619fLzw8PDw8PDw8vIfxXvH1+1N/DL18Ph9nNDc8PDy8Lbw3P7U/nkmeT8aZ3F8/g4eHh7eTd/SDu+att4HeFtKbGx4eHt7zeckP+nr8fOHw8PDwPpfXAyTxBB4eHt4n8gp/+Jflcr6dVMv3y7MWPDw8vJiXHzLtf731fA8PDw8v4PUOsRJ2r5ieHLDh4eHh7eGd2zpwNPUkdFh/qnC0hoeHh3cTLz/cygvx/H6+IeHh4eHdxcuL4KSJKhkz2RLy8BcPDw/vXt48hpi0EfRGwMPDw9vPyyfXayZI4ow8kmjGuHh4eHin8qoRau/gKm/Sypes0BmBh4eHdxIv/4KjdyefrQa75QMwPDw8vC28ask7P0ibl914eHh4+3m96KE6wmThCsuEh4eHdzEvj0qrhXVvCarxBB4eHt5+XhJM5AFBgsk3gPwOHh4e3n5ePpW8CbV6GJaX3eUYFw8PD+9UXrVNKn8+L5HzVoZoJnh4eHhbeJOmq16sMG8yOBwNDw8PbwsveT1pSM0bW6uhMB4eHt4TePmgyXLkcXAyThJJ4OHh4e3hzY+v5jFuThr9Y8DDw8Mb86pX/vWT+6NSGw8PD+9iXrNsjYvpfISkJStaCDw8PLwtvGr5W12UauFe3ZDw8PDw7uJNQodek1ZScJeXDA8PD++RvGTS+QbTAxfCCDw8PLwH8KptB4UQNtgAbiup8fDw8C4IIyYtBXlo+2YcPDw8vC28sxoCkunmEW1vsfDw8PCu5v2/Cw8PDw8PDw8P7wHXN1uhyV0fuIBTAAAAAElFTkSuQmCC">
+              
+            </li>
+          </ul>
+        
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="mdui-icon material-icons">share</i></button>
+          <ul class="mdui-menu" id="share_menu">
+            <li class="mdui-menu-item">
+              <a href="http://service.weibo.com/share/share.php?appkey=&title=timeline&url=https://jerrywebleeblog.top/timeline/index.html&pic=https://jerrywebleeblog.top/images/favicon.jpg&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="http://connect.qq.com/widget/shareqq/index.html?site=JerryWebBlog&title=timeline&pics=https://jerrywebleeblog.top/images/favicon.jpg&url=https://jerrywebleeblog.top/timeline/index.html" target="_blank" class="mdui-ripple">分享到 QQ</a>
+            </li>
+          </ul>
+        
+      </div>
+    </header>
+    <div class="mdui-card-content mdui-typo">
       
-      <a href="/2021/05/20/21/51/test/">
-        <span>05-20</span>
-        <span>第一篇博客测试</span>
-      </a>
+      
+      <blockquote>
+        
+        <strong>本文链接：</strong><br><a href="https://jerrywebleeblog.top/timeline/index.html">https://jerrywebleeblog.top/timeline/index.html</a>
+      </blockquote>
+    </div>
+    <footer class="mdui-card-actions">
+      
+      
+    </footer>
     
   </article>
+  
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+  <script>$("#main article .mdui-card-content img.fancybox").on("click",function(e){$.fancybox.open({src:$(this).attr("src")});});</script>
 
 
 
