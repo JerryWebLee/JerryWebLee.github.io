@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="renderer" content="webkit">
+
+  
+  <title>JavaScript设计模式——原型设计模式 | JerryWebBlog</title>
+
+  <link rel="shortcut icon" href="/images/favicon.jpg">
+  <link rel="alternate" href="/atom.xml" title="JerryWebBlog" type="application/atom+xml">
+  <meta name="description" content="所谓设计模式，是复现问题模型的思想的一种具体表现。一个问题模型可能有多种表达形式，但是如何将这类相似模型用代码的形式表现出来用以处理实际问题，这就产生了设计模式，设计模式是问题模型的具象化。 javascript没有提供传统面向对象语言中类式继承,而是通过原型委托的方式来实现对象与对象之间的继承。 面向接口编程是设计模式中最重要的思想，但是在JavaScript中，面向接口编程的过程跟主流的静态类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript设计模式——原型设计模式">
+<meta property="og:url" content="https://jerrywebleeblog.top/2021/05/22/00/21/20210522js%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F_%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="JerryWebBlog">
+<meta property="og:description" content="所谓设计模式，是复现问题模型的思想的一种具体表现。一个问题模型可能有多种表达形式，但是如何将这类相似模型用代码的形式表现出来用以处理实际问题，这就产生了设计模式，设计模式是问题模型的具象化。 javascript没有提供传统面向对象语言中类式继承,而是通过原型委托的方式来实现对象与对象之间的继承。 面向接口编程是设计模式中最重要的思想，但是在JavaScript中，面向接口编程的过程跟主流的静态类">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-05-21T16:21:20.000Z">
+<meta property="article:modified_time" content="2021-05-22T09:57:37.799Z">
+<meta property="article:author" content="Jerry Web Lee">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="设计模式">
+<meta property="article:tag" content="面向对象">
+<meta name="twitter:card" content="summary">
+
+  <meta name="keywords" content=",javascript,设计模式,面向对象">
+  <meta name="format-detection" content="telephone=no,email=no">
+  <meta name="theme-color" content="#9C27B0">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="JerryWebBlog">
+  <meta name="msapplication-starturl" content="https://jerrywebleeblog.top/2021/05/22/00/21/20210522js%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F_%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/">
+  <meta name="msapplication-navbutton-color" content="#9C27B0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="JerryWebBlog">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon" href="/images/favicon.jpg">
+
+  
+    <link rel="canonical" href="https://jerrywebleeblog.top/2021/05/22/00/21/20210522js%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F_%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/">
+  
+
+  
+  
+
+  
+  
+  
+
+  
+<link rel="stylesheet" href="/css/mdui.css">
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/custom.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body class="mdui-appbar-with-toolbar mdui-theme-primary-indigo mdui-theme-accent-deep-orange">
+  <script>var a=localStorage.getItem("mdui-theme-layout-dark");if(a){document.getElementsByTagName("body")[0].className+=" mdui-theme-layout-dark"};</script>
+  <script>if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches){document.getElementsByTagName("body")[0].className+=" mdui-theme-layout-dark"};</script>
+  <script>var a=localStorage.getItem("mdui-drawer-close");if(!a){document.getElementsByTagName("body")[0].className+=" mdui-drawer-body-left"};</script>
+  <header id="header" class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-hide mdui-appbar-inset">
+  <div class="mdui-toolbar mdui-color-theme">
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="mdui-icon material-icons">menu</i></a>
+    <a href="/" class="mdui-typo-headline">JerryWebBlog</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: '搜索'}"><i class="mdui-icon material-icons">search</i></a>
+    <a href="/atom.xml" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'RSS'}"><i class="mdui-icon material-icons">rss_feed</i></a>
+  </div>
+</header>
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+  <aside id="sidebar" class="mdui-drawer mdui-drawer-full-height">
+  <script>var a=localStorage.getItem("mdui-drawer-close");if(a){document.getElementById("sidebar").className+=" mdui-drawer-close"};</script>
+  <div class="mdui-grid-tile">
+    <img src="/images/banner.jpg" style="height: 160px;">
+    <img src="/images/avatar.jpeg" class="avatar-animation" style="position: absolute; top: 10%; left: 24px; width: 64px; height: 64px; border: 2px solid #fff; border-radius: 50%;">
+    <div class="mdui-grid-tile-actions">
+      <div class="mdui-grid-tile-text">
+        <div class="mdui-grid-tile-title">Jerry Web Lee</div>
+        <div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">art_track</i>面朝大海，春暖花开</div>
+      </div>
+      
+        <div class="mdui-grid-tile-buttons">
+          <a href="mailto:jerryweblee@outlook.com" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'jerryweblee@outlook.com'}"><i class="mdui-icon material-icons">email</i></a>
+        </div>
+      
+    </div>
+  </div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    <a href="/" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">home</i>
+      <div class="mdui-list-item-content">主页</div>
+    </a>
+    <div class="mdui-collapse-item">
+      <script>var a=localStorage.getItem("mdui-collapse-item-0");if(a){document.getElementsByClassName("mdui-collapse-item")[0].className+=" mdui-collapse-item-open"};</script>
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-deep-orange">archive</i>
+        <div class="mdui-list-item-content">归档</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/archives/2021/05/">五月 2021<span class="mdui-ripple sidebar_archives-count">1</span></a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <script>var a=localStorage.getItem("mdui-collapse-item-1");if(a){document.getElementsByClassName("mdui-collapse-item")[1].className+=" mdui-collapse-item-open"};</script>
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">class</i>
+        <div class="mdui-list-item-content">分类</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端<span class="mdui-ripple sidebar_archives-count">1</span></a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <script>var a=localStorage.getItem("mdui-collapse-item-2");if(a){document.getElementsByClassName("mdui-collapse-item")[2].className+=" mdui-collapse-item-open"};</script>
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-brown">bookmark</i>
+        <div class="mdui-list-item-content">标签</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/tags/javascript/" rel="tag">javascript<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag">面向对象<span class="mdui-ripple sidebar_archives-count">1</span></a>
+        
+      </div>
+    </div>
+    <a href="/about" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-purple">person</i>
+      <div class="mdui-list-item-content">关于</div>
+    </a>
+  </div>
+
+  <div class="mdui-divider"></div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    
+      <a href="/timeline" class="mdui-list-item mdui-ripple">时间轴</a>
+    
+      <a href="/tagcloud" class="mdui-list-item mdui-ripple">标签云</a>
+    
+      <a href="/gallery" class="mdui-list-item mdui-ripple">相册</a>
+    
+    <div class="mdui-collapse-item">
+      <script>var a=localStorage.getItem("mdui-collapse-item-3");if(a){document.getElementsByClassName("mdui-collapse-item")[3].className+=" mdui-collapse-item-open"};</script>
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <div class="mdui-list-item-content">友情链接</div>
+        <i class="mdui-list-item-icon mdui-icon material-icons">link</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        
+          <a href="javascript:;" class="mdui-list-item mdui-p-l-2 mdui-text-color-theme mdui-ripple" style="justify-content: center;">链接为空</a>
+        
+      </div>
+    </div>
+  </div>
+</aside>
+  <main id="main" class="mdui-m-t-5 fadeIn animated">
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
+  <article class="mdui-card mdui-m-b-5">
+    <header class="mdui-card-media">
+      <img src="/images/random/material-11.jpg" style="max-height: 450px;">
+      <div class="mdui-card-media-covered">
+        <div class="mdui-card-primary">
+          <div class="mdui-card-primary-title">JavaScript设计模式——原型设计模式</div>
+          <div class="mdui-card-primary-subtitle">
+            <i class="iconfont">&#xe697;</i> 
+            2021-05-22 / <i class="iconfont">&#xe601;</i> Jerry Web Lee
+            
+              &nbsp;&nbsp; 
+              <span id="busuanzi_container_page_pv" style="display: none;">
+                <i class="iconfont">&#xe7fd;</i>
+                <span id="busuanzi_value_page_pv"></span>
+              </span>
+              <!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+              </script> -->
+            
+          </div>
+        </div>
+      </div>
+      <div class="mdui-card-menu">
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#qrcode', align: 'right'}"><i class="mdui-icon material-icons">devices</i></button>
+          <ul class="mdui-menu" id="qrcode">
+            
+              <li class="mdui-menu-item"><a class="mdui-text-center mdui-ripple">发送到手机</a></li>
+            
+            <li class="mdui-menu-item" disabled>
+              
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAT4AAAE+CAAAAAAxUyPsAAAE2ElEQVR42u3aUW7bMBAEUN//0ukBCjszHCZO2scvQ3Ao6jGAV7N8fBjDeCDAhw8fPgMfPnz4DHz4fgnfIx5Pp3v5zdez/f25Xcmz2V6vdrojPnz48OHDN/Plt0y++YwpWeKzeyWzLd/Mnx0fPnz48OG7xZcv6DXcsyvJopMNyHGTFebPjg8fPnz48L2Xb/nclibJzG2Zgg8fPnz48P0uvjOsRzleFx9L2IEPHz58+PC9l6+9TR4c5Ms9W9tZm/8NvQ58+PDhw4evvP2/9/lbz/fhw4cPH77/nq8dbQO7LW6SgGCPEiYBfPjw4cOHb+Brm817ED8VDeVsyTbkEQM+fPjw4cN3ly8pDtpo/m4xkT/kPs/T6/jw4cOHD9/A1xYiyfV8hlvN+LMiLCpTkrAeHz58+PDhi/nysmO/fRvT53FAviVLSwAfPnz48OHb+do4eyl62oIjoUzuuGw2Pnz48OHDd5cv/+Fv/yoJ0/Nmdn7lLM4o/l3w4cOHDx++L+DLX9qTMqh9dc8LprNDZtN24sOHDx8+fAPf60e6GwGcHXprt2d/omunDPDhw4cPH74nhUtbIpzRnDUG2sB9X/Mnm4cPHz58+PANfGev9EuUkD/qV0QSFxoV+PDhw4cP38DXvpyfvWznC00Oq7WbdNa2LyIDfPjw4cOHrwzr2zKlbTDncUA+cztbHlLUbXJ8+PDhw4dv4IsOaR0dDjuj32dY1okPHz58+PDd5TtrcrfQ7at7W1Tt3yliBXz48OHDh2/ga8uRs2ZzflzsrOm+FFjtMTt8+PDhw4fvFt9euJyh5AfXkhbCfkjusHDBhw8fPnz4Yr62/Zw/cAu6HFBr/zbffnz48OHDh+8W39lxsfo1eygmkut5A+By4YIPHz58+PANbfI9Rm/LkSWs39d/dqgOHz58+PDh2/miV+UvCwKSAiKZOYduyxp8+PDhw4fvFl9eWHyUI3nUnDXZ4LNtbqMTfPjw4cOH7xbfXri0sXgCWj9eGVXU/xb48OHDhw/fwLeUCzllvmFnbeykADo77lb0OvDhw4cPH76AL/nJb4uA9npeQrVRe978xocPHz58+L6Hrw0LWqyzsiPfzmRV7eZ9cgUfPnz48OG7xJcXBy3TEgqchftnwUcEig8fPnz48M18Sys6LyyW1vUSWLTFTR0Z4MOHDx8+fEdhfdtmbgPxpUjK794eO7vWJseHDx8+fPhivrYp3hY9+eGwljhv+ecFyicbhg8fPnz48F3iSxY9NZiHTWrDhbYdnkf/+PDhw4cP3y2+s5f2JaxPXtHz1kIe00+RBD58+PDhw3eJr32APJRv4/i2iMnD+jwgOIwM8OHDhw8fvuCAWvsSnofsyzGyfWPOtqoI6/Hhw4cPH76S76z9nLeZlxKnfbB8zikcwYcPHz58+Aa+uwVEjttG8HlTPymY2nvhw4cPHz58d/ny1++zBbWB+HLUrG021GEEPnz48OHDd4mv/bFfQvmzUGBvLZw15vHhw4cPH7738rVxeVJM5CvJV3grHMGHDx8+fPjey7cfC2uD+7xVsGxPdFAAHz58+PDhu8S3BNxtqbE82L4NRZlyt02ODx8+fPjwHYXXbat7KT7ye9UN76P2PD58+PDhw7fwGe3Ahw8fPnwGPnz48Bn48P3g8QdTcFnX/nx43wAAAABJRU5ErkJggg==">
+              
+            </li>
+          </ul>
+        
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="mdui-icon material-icons">share</i></button>
+          <ul class="mdui-menu" id="share_menu">
+            <li class="mdui-menu-item">
+              <a href="http://service.weibo.com/share/share.php?appkey=&title=JavaScript设计模式——原型设计模式&url=https://jerrywebleeblog.top/2021/05/22/00/21/20210522js%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F_%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/&pic=https://jerrywebleeblog.top/images/favicon.jpg&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="http://connect.qq.com/widget/shareqq/index.html?site=JerryWebBlog&title=JavaScript设计模式——原型设计模式&pics=https://jerrywebleeblog.top/images/favicon.jpg&url=https://jerrywebleeblog.top/2021/05/22/00/21/20210522js%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F_%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+            </li>
+          </ul>
+        
+      </div>
+    </header>
+    <div class="mdui-card-content mdui-typo">
+      <p><strong>所谓设计模式，是复现问题模型的思想的一种具体表现。一个问题模型可能有多种表达形式，但是如何将这类相似模型用代码的形式表现出来用以处理实际问题，这就产生了设计模式，设计模式是问题模型的具象化</strong>。</p>
+<p>javascript没有提供传统面向对象语言中类式继承,而是通过<strong>原型委托</strong>的方式来实现对象与对象之间的继承。</p>
+<p>面向接口编程是设计模式中最重要的思想，但是在JavaScript中，面向接口编程的过程跟主流的静态类型语言不一样。</p>
+<hr>
+<h2 id="动态类型语言和静态类型语言"><a href="#动态类型语言和静态类型语言" class="headerlink" title="动态类型语言和静态类型语言"></a>动态类型语言和静态类型语言</h2><p>编程语言按照数据类型大体可以分为两类：<strong>静态类型语言</strong>和<strong>动态类型语言</strong>。</p>
+<h3 id="静态类型语言："><a href="#静态类型语言：" class="headerlink" title="静态类型语言："></a>静态类型语言：</h3><p>在编译时便已确定变量的类型。</p>
+<h4 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h4><ol>
+<li>编译时就能发现类型不匹配的错误，编辑器可以帮助我们提前避免程序运行期间有可能发生的一些错误。</li>
+<li>在程序中明确地规定了数据类型，编译器还可以针对性的对程序进行优化，提高执行速度。</li>
+</ol>
+<h4 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h4><ol>
+<li>迫使程序员依照强契约来编写程序。</li>
+<li>类型的声明增加更多代码，编程中这些细节会将程序员的经历从思考业务逻辑上分散开。</li>
+</ol>
+<h3 id="动态类型语言："><a href="#动态类型语言：" class="headerlink" title="动态类型语言："></a>动态类型语言：</h3><p>其变量类型要到程序运行时，待变量被赋予某个值后，才会具有某种类型。</p>
+<h4 id="优点：-1"><a href="#优点：-1" class="headerlink" title="优点："></a>优点：</h4><ol>
+<li>代码量少，简洁，程序员可以将更多逻辑放在业务逻辑上面，专注逻辑表达，对阅读程序有帮助。</li>
+</ol>
+<h4 id="缺点：-1"><a href="#缺点：-1" class="headerlink" title="缺点："></a>缺点：</h4><ol>
+<li>无法保证变量的类型。</li>
+</ol>
+<hr>
+<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>同一操作作用于不同的对象上面，可以产生不同的解释和不同的执行结果。</p>
+<p>多态背后的思想，是将“做什么”和“谁去做”以及“怎样去做”分离开，也就是将“不变的事物”与“可能改变的事物”分离开。要实现这一点，归根结底要先消除类型之间的耦合关系。</p>
+<p>多态性实际上指的是对象的多态性。</p>
+<p>使用<strong>继承</strong>得到多态效果，继承一般包括实现继承和接口继承。</p>
+<p><strong>多态的最根本作用就是通过把过程化的条件分支语句转化为对象的多态性，从而消除这些条件分支语句</strong></p>
+<p>利用对象的多态性，不必考虑各个对象接到消息后应该做什么，对象应该做什么并不是临时决定的，而是事先已经约定好的，每个对象该做什么，已经成为了该对象的一个方法，被安装在对象内部，每个对象负责他们自己的行为。所以这些都想可以根据同一个消息有条不紊的分别执行自己的方法。</p>
+<p><strong>将行为分布在各个对象种，并让这些对象各自负责自己的行为，这正是面向对象设计的优点。</strong></p>
+<hr>
+<h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2><p>封装的目的是将数据隐藏，一般而言是封装数据和封装实现，更广义的封装，还包括封装类型和封装变化。</p>
+<h3 id="封装数据"><a href="#封装数据" class="headerlink" title="封装数据"></a>封装数据</h3><p>在java种提供了 <code>private</code>，<code>public</code>，<code>protected</code>等关键字来提供不同的访问权限。但是JavaScript种没有该关键字，只能依赖于变量的作用域来实现封装特性，而且只能模拟出<code>private</code>，<code>public</code>两种封装性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myObject = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> _name = <span class="string">&#x27;Jerry&#x27;</span> <span class="comment">// 私有变量</span></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">getName</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  <span class="comment">// 共有方法</span></span><br><span class="line">      <span class="keyword">return</span> _name</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)()</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(myObject.getName()) <span class="comment">// 输出：Jerry</span></span><br><span class="line"><span class="built_in">console</span>.log(myObject._name)     <span class="comment">// 输出：undefined</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="封装实现"><a href="#封装实现" class="headerlink" title="封装实现"></a>封装实现</h3><p>封装使得对象内部的变化对其他对象而言是透明的，也就是不可见的。对象对他自己的行为负责。封装使得对象之间的耦合变得松散。对象之间只能通过对外的接口来通信。当我们修改一个对象时，可以随意的修改他的内部实现，只要对外的接口没有变化，就不会影响到程序的其他功能。</p>
+<h3 id="封装类型"><a href="#封装类型" class="headerlink" title="封装类型"></a>封装类型</h3><p>封装类型是<strong>静态类型语言</strong>种的一种重要的封装方式。</p>
+<h3 id="封装变化"><a href="#封装变化" class="headerlink" title="封装变化"></a>封装变化</h3><p><strong>找到变化并封装之</strong></p>
+<p>通过封装变化的方式，把系统中稳定不变的部分和容易变化的部分隔离开，在系统演变的过程中，我们只需要替换那些容易变化的部分，如果这些是已经封装好的，替换起来也相对容易。可以最大程度的保证程序的稳定性和可扩展性。</p>
+<hr>
+<h2 id="原型模式和基于原型继承的JavaScript对象系统"><a href="#原型模式和基于原型继承的JavaScript对象系统" class="headerlink" title="原型模式和基于原型继承的JavaScript对象系统"></a>原型模式和基于原型继承的JavaScript对象系统</h2><p>在以类为中心的面向对象编程语言种，类和对象的关系可以 想象成铸模和铸件的关系，对象总是从类中创建而来。而在原型编程思想种，类并不是必须的，对象未必需要从类中创建而来，一个对象是通过克隆另一个对象所得到的。</p>
+<p>原型不单是一种设计模式，也被称为一种编程泛型。</p>
+<h3 id="使用克隆的原型模式"><a href="#使用克隆的原型模式" class="headerlink" title="使用克隆的原型模式"></a>使用克隆的原型模式</h3><p>从设计模式的角度讲，原型模式是用于创建对象的一种模式，如果我们想要创建一个对象，一种方法是先指定它的类型，然后通过类来创建这个对象。原型模式选择了另外一种方式，我们不再关心对象的具体类型，而是找到一个对象，然后通过克隆来创建一个一模一样的对象。</p>
+<p>原型模式实现的关键，是语言本身是否提供了clone方法，ES5提供了<code>Object.create()</code>方法，可以用来克隆对象，代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Plane = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.blood = <span class="number">100</span></span><br><span class="line">  <span class="built_in">this</span>.attackLevel = <span class="number">1</span></span><br><span class="line">  <span class="built_in">this</span>.defenseLevel = <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> plane = <span class="keyword">new</span> Plane()</span><br><span class="line">plane.blood = <span class="number">500</span></span><br><span class="line">plane.attackLevel = <span class="number">10</span></span><br><span class="line">plane.defenseLevel = <span class="number">7</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(plane);</span><br><span class="line"><span class="keyword">var</span> clonePlane = <span class="built_in">Object</span>.create(plane)</span><br><span class="line"><span class="built_in">console</span>.log(clonePlane.__proto__)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 在不支持Object.create()方法的浏览器中，可以使用</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.create = <span class="built_in">Object</span>.create || <span class="function"><span class="keyword">function</span> (<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> F = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    F.prototype = obj</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> F()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="克隆是创建对象的手段"><a href="#克隆是创建对象的手段" class="headerlink" title="克隆是创建对象的手段"></a>克隆是创建对象的手段</h3><p>原型模式的真正目的并非在于需要得到一个一模一样的对象，而是提供了一种便捷的方式去创建某个类型的对象，克隆只是创建这个对象的过程和手段。</p>
+<p>JavaScript 就是使用原型模式来搭建整个面向对象系统的。在JavaScript 语言中不存在类的概念，对象也并非从类中创建出来的，所有的JavaScript 对象都是从某个对象上克隆而来的。</p>
+<h3 id="JavaScript中的原型继承"><a href="#JavaScript中的原型继承" class="headerlink" title="JavaScript中的原型继承"></a>JavaScript中的原型继承</h3><ol>
+<li>所有的数据都是对象。</li>
+<li>要得到一个对象，不是通过实例化类，而是找到一个对象作为原型并克隆它。</li>
+<li>对象会记住它的原型。</li>
+<li>如果对象无法响应某个请求，它会把这个请求沿着原型链继续查找。</li>
+</ol>
+<p>JavaScript 的函数既可以作为普通函数被调用，也可以作为构造器被调用。当使用new 运算符来调用函数时，此时的函数就是一个构造器。 用new 运算符来创建对象的过程，实际上也只是先克隆<code>Object.prototype</code> 对象，再进行一些其他额外操作的过程。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">this</span>.name</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person(<span class="string">&#x27;Jerry&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> objectFactory = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="built_in">Object</span>(),</span><br><span class="line">    Constructor = [].shift.call(<span class="built_in">arguments</span>) <span class="comment">// 删除参数数组的第一个值赋值给Constructor</span></span><br><span class="line">  <span class="comment">// console.log(Constructor);</span></span><br><span class="line">  obj.__proto__ = Constructor.prototype    <span class="comment">// 指向正确的原型,把Person函数的getName()方法给obj</span></span><br><span class="line">  <span class="keyword">var</span> ret = Constructor.apply(obj, <span class="built_in">arguments</span>)  <span class="comment">// 借用外部传入的构造器给obj空对象设置name属性</span></span><br><span class="line">  <span class="built_in">console</span>.log(obj);  <span class="comment">// Person &#123; name: &#x27;Jerry&#x27; &#125;</span></span><br><span class="line">  <span class="built_in">console</span>.log(ret);  <span class="comment">// undefined</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">typeof</span> ret === <span class="string">&#x27;object&#x27;</span> ? ret : obj</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person2 = objectFactory(Person, <span class="string">&#x27;Jerry&#x27;</span>)</span><br><span class="line"><span class="built_in">console</span>.log(person1);</span><br><span class="line"><span class="built_in">console</span>.log(person2);</span><br></pre></td></tr></table></figure>
+
+<p>ES6带来了新的语法Class。这让JavaScript看起来像是一门基于类的语言，但其背后仍是通过<strong>原型机制</strong>来创建对象。</p>
+
+      
+      <blockquote>
+        
+        <strong>本文链接：</strong><br><a href="https://jerrywebleeblog.top/2021/05/22/00/21/20210522js%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F_%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/">https://jerrywebleeblog.top/2021/05/22/00/21/20210522js设计模式_原型模式/</a>
+      </blockquote>
+    </div>
+    <footer class="mdui-card-actions">
+      
+        <a class="mdui-ripple article_categories-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+      
+      
+        <a class="mdui-ripple article_tags-link" href="/tags/javascript/" rel="tag">javascript</a><a class="mdui-ripple article_tags-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a><a class="mdui-ripple article_tags-link" href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag">面向对象</a>
+      
+    </footer>
+    
+  </article>
+  
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+  <script>$("#main article .mdui-card-content img.fancybox").on("click",function(e){$.fancybox.open({src:$(this).attr("src")});});</script>
+
+
+
+  <div id="comment" class="mdui-m-t-5">
+    <div id="vcomments"></div>
+<script src="https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js"></script>
+<script>
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var guest_info = 'nick,mail'.split(',').filter(function (item) {
+    return GUEST_INFO.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    appId: 'oAW1x27e1mh2AsPu7AumBdyx-gzGzoHsz',
+    appKey: 'sHC6RKIoiQa0mw4L7ixilf4q',
+    placeholder: '期待留下你的评论!!(可以使用md格式)',
+    notify: 'false' === 'true',
+    verify: 'false' === 'true',
+    path: '' || window.location.pathname,
+    avatar: 'identicon',
+    meta: guest_info,
+    pageSize: '5',
+    lang: 'zh-cn',
+    pageSize: '5',
+    maxNest: '4,',
+    guestInfo: 'nick,mail',
+    count: 'true'
+  });
+</script>
+  </div>
+
+
+</main>
+  <footer id="footer" class="mdui-m-t-5 mdui-p-y-3 mdui-color-theme">
+  <div class="mdui-p-y-0 mdui-text-center">
+    
+      <a href="https://m.weibo.cn/" target="_blank" class="mdui-btn mdui-btn-icon mdui-text-color-theme-a100"><i class="mdui-icon iconfont">&#xec7e;</i></a>
+    
+    
+      <a href="https://github.com/JerryWebLee" target="_blank" class="mdui-btn mdui-btn-icon mdui-text-color-theme-a100"><i class="mdui-icon iconfont">&#xe7ab;</i></a>
+    
+    
+      <a href="https://www.zhihu.com/" target="_blank" class="mdui-btn mdui-btn-icon mdui-text-color-theme-a100"><i class="mdui-icon iconfont">&#xe6c0;</i></a>
+    
+    
+      <a href="https://www.douban.com/" target="_blank" class="mdui-btn mdui-btn-icon mdui-text-color-theme-a100"><i class="mdui-icon iconfont">&#xe667;</i></a>
+    
+    
+    
+  </div>
+  <div class="mdui-p-y-1 mdui-text-center">
+    Copyright &copy; 2021 - 2021 Jerry Web Lee<br>
+    Powered by <a href="https://hexo.io/" target="_blank" class="mdui-text-color-theme-accent">Hexo</a>
+    <br>
+      <span id="busuanzi_container_site_pv" style="display: none;">
+        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+      </span>
+      <span class="post-meta-divider">|</span>
+      <span id="busuanzi_container_site_uv" style="display: none;">
+        本站访客数<span id="busuanzi_value_site_uv"></span>人
+      </span>
+      <!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+      </script> -->
+    
+  </div>
+</footer>
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_upward</i></button>
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+<script src="/js/mdui.js"></script>
+<script src="/js/script.js"></script>
+
+  
+<script src="/custom.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"middle","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
