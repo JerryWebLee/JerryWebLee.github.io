@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="renderer" content="webkit">
+
+  
+  <title>Git常用命令及常见场景下的Git操作 | JerryWebBlog</title>
+
+  <link rel="shortcut icon" href="/images/favicon.jpg">
+  <link rel="alternate" href="/atom.xml" title="JerryWebBlog" type="application/atom+xml">
+  <meta name="description" content="Git四大分区  工作区(Working Area) 暂存区(Stage) 本地仓库(Local Repository) 远程仓库(Remote Repository)    Git常用命令列表    命令 含义     git init 初始化   git clone [url] 复制远程仓库到本地   git remote add [origin] [url] 将本地仓库关联到远程仓库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git常用命令及常见场景下的Git操作">
+<meta property="og:url" content="https://jerrywebleeblog.top/2021/05/23/10/58/20210523Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E5%B8%B8%E8%A7%81%E5%9C%BA%E6%99%AF%E4%B8%8B%E7%9A%84Git%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="JerryWebBlog">
+<meta property="og:description" content="Git四大分区  工作区(Working Area) 暂存区(Stage) 本地仓库(Local Repository) 远程仓库(Remote Repository)    Git常用命令列表    命令 含义     git init 初始化   git clone [url] 复制远程仓库到本地   git remote add [origin] [url] 将本地仓库关联到远程仓库">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-05-23T02:58:30.000Z">
+<meta property="article:modified_time" content="2021-05-24T14:33:27.237Z">
+<meta property="article:author" content="Jerry Web Lee">
+<meta property="article:tag" content="Git">
+<meta name="twitter:card" content="summary">
+
+  <meta name="keywords" content=",Git">
+  <meta name="format-detection" content="telephone=no,email=no">
+  <meta name="theme-color" content="#9C27B0">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="JerryWebBlog">
+  <meta name="msapplication-starturl" content="https://jerrywebleeblog.top/2021/05/23/10/58/20210523Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E5%B8%B8%E8%A7%81%E5%9C%BA%E6%99%AF%E4%B8%8B%E7%9A%84Git%E6%93%8D%E4%BD%9C/">
+  <meta name="msapplication-navbutton-color" content="#9C27B0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="JerryWebBlog">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon" href="/images/favicon.jpg">
+
+  
+    <link rel="canonical" href="https://jerrywebleeblog.top/2021/05/23/10/58/20210523Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E5%B8%B8%E8%A7%81%E5%9C%BA%E6%99%AF%E4%B8%8B%E7%9A%84Git%E6%93%8D%E4%BD%9C/">
+  
+
+  
+  
+
+  
+  
+  
+
+  
+<link rel="stylesheet" href="/css/mdui.css">
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/custom.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body class="mdui-appbar-with-toolbar mdui-theme-primary-indigo mdui-theme-accent-deep-orange">
+  <script>var a=localStorage.getItem("mdui-theme-layout-dark");if(a){document.getElementsByTagName("body")[0].className+=" mdui-theme-layout-dark"};</script>
+  <script>if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches){document.getElementsByTagName("body")[0].className+=" mdui-theme-layout-dark"};</script>
+  <script>var a=localStorage.getItem("mdui-drawer-close");if(!a){document.getElementsByTagName("body")[0].className+=" mdui-drawer-body-left"};</script>
+  <header id="header" class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-hide mdui-appbar-inset">
+  <div class="mdui-toolbar mdui-color-theme">
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="mdui-icon material-icons">menu</i></a>
+    <a href="/" class="mdui-typo-headline">JerryWebBlog</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: '搜索'}"><i class="mdui-icon material-icons">search</i></a>
+    <a href="/atom.xml" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'RSS'}"><i class="mdui-icon material-icons">rss_feed</i></a>
+  </div>
+</header>
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+  <aside id="sidebar" class="mdui-drawer mdui-drawer-full-height">
+  <script>var a=localStorage.getItem("mdui-drawer-close");if(a){document.getElementById("sidebar").className+=" mdui-drawer-close"};</script>
+  <div class="mdui-grid-tile">
+    <img src="/images/banner.jpg" style="height: 160px;">
+    <img src="/images/avatar.jpeg" class="avatar-animation" style="position: absolute; top: 10%; left: 24px; width: 64px; height: 64px; border: 2px solid #fff; border-radius: 50%;">
+    <div class="mdui-grid-tile-actions">
+      <div class="mdui-grid-tile-text">
+        <div class="mdui-grid-tile-title">Jerry Web Lee</div>
+        <div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">art_track</i>面朝大海，春暖花开</div>
+      </div>
+      
+        <div class="mdui-grid-tile-buttons">
+          <a href="mailto:jerryweblee@outlook.com" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'jerryweblee@outlook.com'}"><i class="mdui-icon material-icons">email</i></a>
+        </div>
+      
+    </div>
+  </div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    <a href="/" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">home</i>
+      <div class="mdui-list-item-content">主页</div>
+    </a>
+    <div class="mdui-collapse-item">
+      <script>var a=localStorage.getItem("mdui-collapse-item-0");if(a){document.getElementsByClassName("mdui-collapse-item")[0].className+=" mdui-collapse-item-open"};</script>
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-deep-orange">archive</i>
+        <div class="mdui-list-item-content">归档</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/archives/2021/05/">五月 2021<span class="mdui-ripple sidebar_archives-count">2</span></a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <script>var a=localStorage.getItem("mdui-collapse-item-1");if(a){document.getElementsByClassName("mdui-collapse-item")[1].className+=" mdui-collapse-item-open"};</script>
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">class</i>
+        <div class="mdui-list-item-content">分类</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端<span class="mdui-ripple sidebar_archives-count">2</span></a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <script>var a=localStorage.getItem("mdui-collapse-item-2");if(a){document.getElementsByClassName("mdui-collapse-item")[2].className+=" mdui-collapse-item-open"};</script>
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-brown">bookmark</i>
+        <div class="mdui-list-item-content">标签</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/tags/Git/" rel="tag">Git<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/javascript/" rel="tag">javascript<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag">面向对象<span class="mdui-ripple sidebar_archives-count">1</span></a>
+        
+      </div>
+    </div>
+    <a href="/about" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-purple">person</i>
+      <div class="mdui-list-item-content">关于</div>
+    </a>
+  </div>
+
+  <div class="mdui-divider"></div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    
+      <a href="/timeline" class="mdui-list-item mdui-ripple">时间轴</a>
+    
+      <a href="/tagcloud" class="mdui-list-item mdui-ripple">标签云</a>
+    
+      <a href="/gallery" class="mdui-list-item mdui-ripple">相册</a>
+    
+    <div class="mdui-collapse-item">
+      <script>var a=localStorage.getItem("mdui-collapse-item-3");if(a){document.getElementsByClassName("mdui-collapse-item")[3].className+=" mdui-collapse-item-open"};</script>
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <div class="mdui-list-item-content">友情链接</div>
+        <i class="mdui-list-item-icon mdui-icon material-icons">link</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        
+          <a href="javascript:;" class="mdui-list-item mdui-p-l-2 mdui-text-color-theme mdui-ripple" style="justify-content: center;">链接为空</a>
+        
+      </div>
+    </div>
+  </div>
+</aside>
+  <main id="main" class="mdui-m-t-5 fadeIn animated">
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
+  <article class="mdui-card mdui-m-b-5">
+    <header class="mdui-card-media">
+      <img src="/images/random/material-10.jpg" style="max-height: 450px;">
+      <div class="mdui-card-media-covered">
+        <div class="mdui-card-primary">
+          <div class="mdui-card-primary-title">Git常用命令及常见场景下的Git操作</div>
+          <div class="mdui-card-primary-subtitle">
+            <i class="iconfont">&#xe697;</i> 
+            2021-05-23 / <i class="iconfont">&#xe601;</i> Jerry Web Lee
+            
+              &nbsp;&nbsp; 
+              <span id="busuanzi_container_page_pv" style="display: none;">
+                <i class="iconfont">&#xe7fd;</i>
+                <span id="busuanzi_value_page_pv"></span>
+              </span>
+              <!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+              </script> -->
+            
+          </div>
+        </div>
+      </div>
+      <div class="mdui-card-menu">
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#qrcode', align: 'right'}"><i class="mdui-icon material-icons">devices</i></button>
+          <ul class="mdui-menu" id="qrcode">
+            
+              <li class="mdui-menu-item"><a class="mdui-text-center mdui-ripple">发送到手机</a></li>
+            
+            <li class="mdui-menu-item" disabled>
+              
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVYAAAFWCAAAAAAXxOpfAAAFiUlEQVR42u3aQW4jMQwEQP//07vXBYLY3eR4Y01KpyCwZ6SSDwSbjz/WG9YDAVasWC2sWLFaWLFitbAexfqI13ff+vr/5/9JPv/v/7/+/d3br9rb0AQrVqxYsWI9lvVF6RDQfAfxfKPPIdo3Pn/+8/3sTbBixYoVK9bTWZNtJX+39DlrW/rMyqzWBCtWrFixYsWaAyXtkryQai/g+dmxYsWKFStWrLNiKA8wnrct2rKpbaMk148VK1asWLH+TtYkYNiURLOBjP2T20LwB7IsrFixYsWK9UdZZzHGvf/+r/OtWLFixYoV6w+xtispcWYtkk3Lpm39tOVUJIMVK1asWLEeyNoGHm0LYxbezEqcWSy0d8CKFStWrFhPZ93EKu1IRD7isH/atacYhi5YsWLFihXrgax5YTFr0LTfai+vKIxGwdKwwMKKFStWrFg/jHXzsnYUctO+SX4EeQk1g3txRqxYsWLFivVY1sdo5Q2R5AL2b893OLuGehATK1asWLFi/XjW/PDJJ9soJXlC2/7I20Oz0CUqsLBixYoVK9YDWWdjCvlRrw1s8vGL9sJmsRNWrFixYsV6Iuus+Mg3sY802sKufVodruyzLKxYsWLFivVjWJMvJ0dqWy0tQb7nfMhjMzgShS5YsWLFihXrUaztAWaNlbxFsgmHkitMGkaFCVasWLFixXo4axuobOKQ/GJmJeDmvfnnsWLFihUr1tNZ20AiH6xMnty2PGZlWbuTvD2EFStWrFixns66b6a8iCJiyk0DpR2gzMc4inENrFixYsWK9UDWfCih3XqLmJdcs2Juc946dMGKFStWrFiPYt0MYbRks0GNNs7ZN1kuCF2wYsWKFSvWo1jzEcb2M3v6NlZpxzjaK8eKFStWrFjvzdqWHftxjU2h017GrJF0QYGFFStWrFixfhhrHS2MSrH8YvIoZfO02XtfXCRWrFixYsV6LGv7dx5y5IHHbA/5tV3VoInGL7BixYoVK9ZDWJPjzQKVNm5p39sOcOT7vKDAwooVK1asWA9kbZsamxGHWehy7dDGbGHFihUrVqx3Yt2EK8mB23InGeyYXe0+OnqxK6xYsWLFivVGrBv6qxoc18YwLVb9o8GKFStWrFgPZM1bIfnh24ilGHGImy+ziGhWrmHFihUrVqyns7atkOJlo2GLWcE3GyjJz/jiLFixYsWKFeuBrJvSpIVItjsry/KWTVsUJo0erFixYsWK9XTWWSukbWS0rZxN06T9WcxGPbBixYoVK9Z7sM5aKu+LPdoG0CzOSaKmYeiCFStWrFixHsXaDjK2KG0z5aq4ZVbAtUMhWLFixYoV611Z94HK7Al5PJMHQrPxzfynhhUrVqxYsZ7IGpUOwbFnQxWzg7VNnHbsY1ZmYcWKFStWrCey7sujtgnyjpbKJuDJyzisWLFixYr1fqzRF0al1aahkw9ktA2RpIybPRkrVqxYsWK9E2tRWMRNivY5eWnVviU/b9GCwYoVK1asWA9kTUYw82HNlizZdNLyuCw4iZ9ZdLCwYsWKFSvWD2adFTd5OybhyI9x7cDoZiwDK1asWLFivRNrHplsApKrxjf3700utR1JwYoVK1asWO/BOgs8Zs2U2UDGbMAiL6FmkRJWrFixYsV6IusjXslowp7yHeMR7SmGYyhYsWLFihXrsax582Ufe2wKnbYQbC97FUdhxYoVK1ash7POBiDarWzCj2ubI1e9EStWrFixYv1trM+f0BY9+dvzt+TvykOmF7vCihUrVqxYfw1rS7kqXNbF3OynUAdRWLFixYoV6+Gss4Mlm9uPbswKozZAaq8EK1asWLFivQdrXkwkEG3bZRao7EOXfHxzGLpgxYoVK1asH89qXbWwYsWK1cKKFauFFStWC+vHr7/DysjE1rmw2AAAAABJRU5ErkJggg==">
+              
+            </li>
+          </ul>
+        
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="mdui-icon material-icons">share</i></button>
+          <ul class="mdui-menu" id="share_menu">
+            <li class="mdui-menu-item">
+              <a href="http://service.weibo.com/share/share.php?appkey=&title=Git常用命令及常见场景下的Git操作&url=https://jerrywebleeblog.top/2021/05/23/10/58/20210523Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E5%B8%B8%E8%A7%81%E5%9C%BA%E6%99%AF%E4%B8%8B%E7%9A%84Git%E6%93%8D%E4%BD%9C/&pic=https://jerrywebleeblog.top/images/favicon.jpg&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="http://connect.qq.com/widget/shareqq/index.html?site=JerryWebBlog&title=Git常用命令及常见场景下的Git操作&pics=https://jerrywebleeblog.top/images/favicon.jpg&url=https://jerrywebleeblog.top/2021/05/23/10/58/20210523Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E5%B8%B8%E8%A7%81%E5%9C%BA%E6%99%AF%E4%B8%8B%E7%9A%84Git%E6%93%8D%E4%BD%9C/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+            </li>
+          </ul>
+        
+      </div>
+    </header>
+    <div class="mdui-card-content mdui-typo">
+      <h3 id="git四大分区"><a class="markdownIt-Anchor" href="#git四大分区"></a> Git四大分区</h3>
+<ul>
+<li>工作区(Working Area)</li>
+<li>暂存区(Stage)</li>
+<li>本地仓库(Local Repository)</li>
+<li>远程仓库(Remote Repository)</li>
+</ul>
+<hr />
+<h3 id="git常用命令列表"><a class="markdownIt-Anchor" href="#git常用命令列表"></a> Git常用命令列表</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><code>命令</code></th>
+<th style="text-align:left"><code>含义</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>git init</code></td>
+<td style="text-align:left">初始化</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git clone [url]</code></td>
+<td style="text-align:left">复制远程仓库到本地</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git remote add [origin] [url]</code></td>
+<td style="text-align:left">将本地仓库关联到远程仓库</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git remote rm [name]</code></td>
+<td style="text-align:left">删除远程仓库</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git remote set-url --push [name] [newUrl]</code></td>
+<td style="text-align:left">修改远程仓库</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git pull [remoteName] [localBranchName]</code></td>
+<td style="text-align:left">拉取远程仓库</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git push [remoteName] [localBranchName]</code></td>
+<td style="text-align:left">推送到远程仓库</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git push origin [localBranchName]:master</code></td>
+<td style="text-align:left">提交本地分支<code>localBranchName</code>作为远程的<code>master</code>分支</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git push origin [localBranchName]:[localBranchName]</code><br />或者<br /><code>git push origin [localBranchName]</code></td>
+<td style="text-align:left">提交本地分支<code>localBranchName</code>作为远程的<code>localBranchName</code>分支</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git branch</code></td>
+<td style="text-align:left">查看本地分支</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git branch -a</code></td>
+<td style="text-align:left">查看本地分支和远程分支</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git branch -r</code></td>
+<td style="text-align:left">查看远程分支</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git branch [name]</code></td>
+<td style="text-align:left">创建本地分支,创建后并不会切换到该分支</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git checkout -b [name]</code></td>
+<td style="text-align:left">创建本地分支并切换到该分支</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git checkout [name]</code></td>
+<td style="text-align:left">切换到该分支</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git merge [name]</code></td>
+<td style="text-align:left">合并该分支到当前分支</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git push origin [name]</code></td>
+<td style="text-align:left">将本地分支推送到远程分支</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git push origin :heads/[name]</code></td>
+<td style="text-align:left">删除<code>name</code>远程分支</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git tag</code></td>
+<td style="text-align:left">查看所有<code>tag</code>信息</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git tag [name]</code></td>
+<td style="text-align:left">创建<code>tag</code>标签</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git tag -d [name]</code></td>
+<td style="text-align:left">删除<code>tag</code>标签</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git tag -r</code></td>
+<td style="text-align:left">查看远程tag标签</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git push origin [tag]</code></td>
+<td style="text-align:left">推送本地<code>tag</code>到远程仓库</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git push origin :refs/tags/[name]</code></td>
+<td style="text-align:left">删除远程标签</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git commit -v</code></td>
+<td style="text-align:left">当你用<code>-v</code>参数的时候可以看commit的差异</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git pull origin --tags</code></td>
+<td style="text-align:left">合并远程<code>tag</code>到本地</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git push origin --tags</code></td>
+<td style="text-align:left">推送本地tag到远程仓库</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git tag -a [name] -m ['yourMessage']</code></td>
+<td style="text-align:left">创建带注释的<code>tag</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git status</code></td>
+<td style="text-align:left">查看当前项目状态</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git add .</code></td>
+<td style="text-align:left">暂存修改</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git commint -a/-m ['yourMessage']</code></td>
+<td style="text-align:left">提交修改</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git commit --amend ['yourMessage']</code></td>
+<td style="text-align:left">对最近的一次提交注释信息进行修改，并重新提交</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git remote show origin</code></td>
+<td style="text-align:left">显示远程库<code>origin</code>里的资源</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git checkout --track origin/dev</code></td>
+<td style="text-align:left">切换到远程<code>dev</code>分支</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git branch -D master develop</code></td>
+<td style="text-align:left">删除本地库<code>develop</code>(未合并分支的强制删除)</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git rm [fileName]</code></td>
+<td style="text-align:left">从<code>git</code>中删除指定文件(从暂存区和工作区中删除)</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git config --list</code></td>
+<td style="text-align:left">查看配置列表</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git ls-files</code></td>
+<td style="text-align:left">查看已经被提交的文件</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git ls-files -s</code></td>
+<td style="text-align:left">查看保存在暂存区的文件,和hash值</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git cat-file -p [暂存区文件hash值]</code></td>
+<td style="text-align:left">显示保存在暂存区的文件的具体内容</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git log</code></td>
+<td style="text-align:left">查看你<code>commit</code>的日志</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git log --pretty=oneline</code></td>
+<td style="text-align:left">显示提交信息到一行</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git diff</code></td>
+<td style="text-align:left">查看尚未暂存的更新</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git diff --cached/--staged</code></td>
+<td style="text-align:left">查看哪写文件已暂存还没有提交，并显示文件具体的修改内容</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git rm --cached [fileName]</code></td>
+<td style="text-align:left">移除文件(只从暂存区中删除)</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git rm -f [fileName]</code></td>
+<td style="text-align:left">强行移除修改后文件(从暂存区和工作区中删除)</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git diff --cached 或 $ git diff --staged</code></td>
+<td style="text-align:left">查看尚未提交的更新</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git stash push</code></td>
+<td style="text-align:left">将文件给<code>push</code>到一个临时空间中</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git stash pop</code></td>
+<td style="text-align:left">将文件从临时空间<code>pop</code>下来</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git stash list</code></td>
+<td style="text-align:left">查看未完成的任务保存在栈中的任务列表</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git pull</code></td>
+<td style="text-align:left">本地与服务器端同步</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git fetch</code></td>
+<td style="text-align:left">相当于是从远程获取最新版本到本地，不会自动<code>merge</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git commit -a -m [&quot;log_message&quot;]</code></td>
+<td style="text-align:left">(<code>-a</code>是提交所有改动，<code>-m</code>是加入log信息) 本地修改同步至服务器端</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git branch [branchName] master</code></td>
+<td style="text-align:left">从主分支master创建<code>[branchName]</code>分支</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git branch -m [oldBranchName] [newBranchName]</code></td>
+<td style="text-align:left">将<code>[oldBranchName]</code>修改为<code>[newBranchName]</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git checkout [branchName]/master</code></td>
+<td style="text-align:left">切换到<code>[branchName]/master</code>分支</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git config --global --unset[ user.name]</code></td>
+<td style="text-align:left">删除全局配置的用户名</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git config --global --unset [user.email]</code></td>
+<td style="text-align:left">删除全局配置的emai</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>mv [oldFileName] [newFileName]</code></td>
+<td style="text-align:left">文件重命名</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git reflog</code></td>
+<td style="text-align:left">查看之前所有的提交记录，包括已经被删除的，在<code>git log</code>中不显示的</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git stash apply stash [栈hash]</code></td>
+<td style="text-align:left">根据存储在栈中的hash值取出未完成的任务</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>git remote set-head origin -d</code></td>
+<td style="text-align:left">删除<code>origin/HEAD</code>指针，无影响</td>
+</tr>
+</tbody>
+</table>
+<p><code>git checkout [newBranch]</code>使用注意:每次切换分支前，确保当前分支必须得是干净的;在切换分支时，如果当前分支上有未暂存的修改(第一次)或者有未提交的暂存(第一次),分支可以切换成功,但是这种操作可能会污染其他分支.</p>
+<hr />
+<h3 id="git命令重命名简化"><a class="markdownIt-Anchor" href="#git命令重命名简化"></a> git命令重命名(简化)</h3>
+<ul>
+<li>
+<p><code>git lg</code>  –  格式化展示提交信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global alias.lg <span class="string">&quot;log --graph --pretty=format:&#x27;%Cred%h%Creset -%C(yellow)%d%Creset %C(bold blue)%s%Creset %Cgreen(%cr) &lt;%an&gt;%Creset&#x27; --abbrev-commit --date=relative&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><code>git lga</code>  –  格式化展示提交信息(实现的操作同上,命令名为<code>lga</code>)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global alias.lga <span class="string">&quot;log --graph --pretty=format:&#x27;%Cred%h%Creset -%C(yellow)%d%Creset %C(bold blue)%s%Creset %Cgreen(%cr) &lt;%an&gt;%Creset&#x27; --abbrev-commit --date=relative&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr />
+<h3 id="常见场景git操作"><a class="markdownIt-Anchor" href="#常见场景git操作"></a> 常见场景Git操作</h3>
+<h4 id="将当前修改的内容提交到新的分支上"><a class="markdownIt-Anchor" href="#将当前修改的内容提交到新的分支上"></a> 将当前修改的内容提交到新的分支上</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 步骤1：在当前分支上的修改暂存起来</span></span><br><span class="line">git stash</span><br><span class="line"><span class="comment"># 步骤2：暂存修改后，在本地新建分支（new_branch为新分支的名字）</span></span><br><span class="line">git checkout -b new_branch</span><br><span class="line"><span class="comment"># 步骤3：将暂存的修改放到新建分支中</span></span><br><span class="line">git stash pop</span><br><span class="line"><span class="comment"># 步骤4：</span></span><br><span class="line">git add .</span><br><span class="line">git commit -m [<span class="string">&#x27;commit message&#x27;</span>]</span><br><span class="line"><span class="comment"># 步骤5：将提交的内容push到远程服务器</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+<p><code>git stash</code>的作用是把工作区(必须是工作区中已经被<code>git</code>追踪到的文件)和索引中的内容暂时存到一个堆上，而且这个堆是和分支不相关的。切换分支后，依然可以看到并使用。</p>
+<p>当正在进行项目中某一部分的工作处于一个比较杂乱的状态，而你想转到其他分支上进行一些工作。但你不想提交进行了一半的工作，否则以后你无法回到这个工作点。解决这个问题的办法就是<code>git stash</code>命令。</p>
+<p>“‘储藏”可以获取你工作目录的中间状态——也就是你修改过的被追踪的文件和暂存的变更——并将它保存到一个未完结变更的堆栈中，随时可以重新应用。</p>
+<h4 id="实际项目中的创建新分支及合并操作"><a class="markdownIt-Anchor" href="#实际项目中的创建新分支及合并操作"></a> 实际项目中的创建新分支及合并操作</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 步骤1:创建子分支</span></span><br><span class="line">git checkout -b [newBranch]</span><br><span class="line"><span class="comment"># 步骤2:完成该分支的需求</span></span><br><span class="line"><span class="comment"># 步骤3:添加提交</span></span><br><span class="line">git add .</span><br><span class="line">git commit -m [<span class="string">&#x27;commit message&#x27;</span>]</span><br><span class="line"><span class="comment"># 返回主分支合并子分子</span></span><br><span class="line">git checkout master</span><br><span class="line">git merge [newBranch]</span><br><span class="line"><span class="comment"># 推送到远程仓库</span></span><br><span class="line">git push</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将子分支推送到远程仓库</span></span><br><span class="line"><span class="comment"># 记得推到远端之前先拉取最新代码</span></span><br><span class="line">git pull</span><br><span class="line">git checkout [newBranch]</span><br><span class="line">git push origin [newBranch] / git push -u origin [newBranch]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果远程分支没有创建关联,使用下面的代码创建远程分支并关联到本地分支</span></span><br><span class="line">git branch --set-upstream [newBranch] origin/[newBranch]</span><br></pre></td></tr></table></figure>
+<hr />
+<blockquote>
+<p>详细内容请参考<a target="_blank" rel="noopener" href="https://git-scm.com/docs">git文档</a>;如有错误请在右侧导航处邮件联系,或者在下方评论区指出.</p>
+</blockquote>
+
+      
+      <blockquote>
+        
+        <strong>本文链接：</strong><br><a href="https://jerrywebleeblog.top/2021/05/23/10/58/20210523Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E5%B8%B8%E8%A7%81%E5%9C%BA%E6%99%AF%E4%B8%8B%E7%9A%84Git%E6%93%8D%E4%BD%9C/">https://jerrywebleeblog.top/2021/05/23/10/58/20210523Git常用命令及常见场景下的Git操作/</a>
+      </blockquote>
+    </div>
+    <footer class="mdui-card-actions">
+      
+        <a class="mdui-ripple article_categories-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+      
+      
+        <a class="mdui-ripple article_tags-link" href="/tags/Git/" rel="tag">Git</a>
+      
+    </footer>
+    
+  </article>
+  
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+  <script>$("#main article .mdui-card-content img.fancybox").on("click",function(e){$.fancybox.open({src:$(this).attr("src")});});</script>
+
+
+  <nav id="paginator">
+    
+    <div class="spacer"></div>
+    
+      <a rel="next" class="extend next" href="/2021/05/22/00/21/20210522js%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F_%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/">
+        <span class="mdui-p-x-3" mdui-tooltip="{content: 'JavaScript设计模式——原型设计模式'}">下一篇</span>
+        <button aria-label="next" class="mdui-btn mdui-btn-raised mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_forward</i></button>
+      </a>
+    
+  </nav>
+
+
+  <div id="comment" class="mdui-m-t-5">
+    <div id="vcomments"></div>
+<script src="https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js"></script>
+<script>
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var guest_info = 'nick,mail'.split(',').filter(function (item) {
+    return GUEST_INFO.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    appId: 'oAW1x27e1mh2AsPu7AumBdyx-gzGzoHsz',
+    appKey: 'sHC6RKIoiQa0mw4L7ixilf4q',
+    placeholder: '期待留下你的评论!!(可以使用md格式)',
+    notify: 'false' === 'true',
+    verify: 'false' === 'true',
+    path: '' || window.location.pathname,
+    avatar: 'identicon',
+    avatar_cdn: 'https://www.gravatar.com/avatar/',
+    meta: guest_info,
+    pageSize: '5',
+    lang: 'zh-cn',
+    pageSize: '5',
+    maxNest: '4,',
+    guestInfo: 'nick,mail',
+    count: 'true'
+  });
+</script>
+  </div>
+
+
+
+  <div style="position: fixed !important; right: 16px; top: 30%;">
+    <button class="mdui-fab mdui-fab-mini mdui-ripple" mdui-menu="{target: '#toc'}"><i class="mdui-icon material-icons">toc</i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item" disabled><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#git%E5%9B%9B%E5%A4%A7%E5%88%86%E5%8C%BA"><span class="toc-text"> Git四大分区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%88%97%E8%A1%A8"><span class="toc-text"> Git常用命令列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git%E5%91%BD%E4%BB%A4%E9%87%8D%E5%91%BD%E5%90%8D%E7%AE%80%E5%8C%96"><span class="toc-text"> git命令重命名(简化)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%9C%BA%E6%99%AFgit%E6%93%8D%E4%BD%9C"><span class="toc-text"> 常见场景Git操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%86%E5%BD%93%E5%89%8D%E4%BF%AE%E6%94%B9%E7%9A%84%E5%86%85%E5%AE%B9%E6%8F%90%E4%BA%A4%E5%88%B0%E6%96%B0%E7%9A%84%E5%88%86%E6%94%AF%E4%B8%8A"><span class="toc-text"> 将当前修改的内容提交到新的分支上</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E9%99%85%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E5%88%9B%E5%BB%BA%E6%96%B0%E5%88%86%E6%94%AF%E5%8F%8A%E5%90%88%E5%B9%B6%E6%93%8D%E4%BD%9C"><span class="toc-text"> 实际项目中的创建新分支及合并操作</span></a></li></ol></li></ol></li>
+    </ul>
+  </div>
+</main>
+  <footer id="footer" class="mdui-m-t-5 mdui-p-y-3 mdui-color-theme">
+  <div class="mdui-p-y-0 mdui-text-center">
+    
+      <a href="https://m.weibo.cn/" target="_blank" class="mdui-btn mdui-btn-icon mdui-text-color-theme-a100"><i class="mdui-icon iconfont">&#xec7e;</i></a>
+    
+    
+      <a href="https://github.com/JerryWebLee" target="_blank" class="mdui-btn mdui-btn-icon mdui-text-color-theme-a100"><i class="mdui-icon iconfont">&#xe7ab;</i></a>
+    
+    
+      <a href="https://www.zhihu.com/" target="_blank" class="mdui-btn mdui-btn-icon mdui-text-color-theme-a100"><i class="mdui-icon iconfont">&#xe6c0;</i></a>
+    
+    
+      <a href="https://www.douban.com/" target="_blank" class="mdui-btn mdui-btn-icon mdui-text-color-theme-a100"><i class="mdui-icon iconfont">&#xe667;</i></a>
+    
+    
+    
+  </div>
+  <div class="mdui-p-y-1 mdui-text-center">
+    Copyright &copy; 2021 - 2021 Jerry Web Lee<br>
+    Powered by <a href="https://hexo.io/" target="_blank" class="mdui-text-color-theme-accent">Hexo</a>
+    <br>
+      <span id="busuanzi_container_site_pv" style="display: none;">
+        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+      </span>
+      <span class="post-meta-divider">|</span>
+      <span id="busuanzi_container_site_uv" style="display: none;">
+        本站访客数<span id="busuanzi_value_site_uv"></span>人
+      </span>
+      <!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+      </script> -->
+    
+  </div>
+</footer>
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_upward</i></button>
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+<script src="/js/mdui.js"></script>
+<script src="/js/script.js"></script>
+
+  
+<script src="/custom.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"middle","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
