@@ -8,30 +8,30 @@
   <meta name="renderer" content="webkit">
 
   
-  <title>关于 | JerryWebBlog</title>
+  <title>继承 | JerryWebBlog</title>
 
   <link rel="shortcut icon" href="/images/favicon.jpg">
   <link rel="alternate" href="/atom.xml" title="JerryWebBlog" type="application/atom+xml">
-  <meta name="description" content="为了学习写博客,而不是为了写博客才学习… 在用hexo创建我的博客网站之前,我一直想拥有一个属于自己的博客网页,目的并不纯粹,仅仅是为了内心那一点点虚无的满足感,然而当网站搭建完成的时候,我才发现自己迷失了方向,因为网页虽然搭建完毕,我却不知道自己该写什么. 那么我最初的目的又是什么呢? 当然就是为了能有一个记录我自己学习经历的东西,我不太喜欢将学习经历记录在笔纸之间,因为我不能时时刻刻带着纸笔,">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="https://jerrywebleeblog.top/about/index.html">
+  <meta name="description" content="​		现每个类都有3个部分，第一部分是构造函数内的，这是供 实例化对象复制用的，第二部分是构造函数外的，直接通过点语法添加的，这是供类使 用的，实例化对象是访问不到的，第三部分是类的原型中的，实例化对象可以通过其原 型链间接地访问到，也是为供所有实例化对象所共用的。  子类的原型对象——类式继承">
+<meta property="og:type" content="article">
+<meta property="og:title" content="继承">
+<meta property="og:url" content="https://jerrywebleeblog.top/2021/06/07/10/43/20210607%E7%BB%A7%E6%89%BF/index.html">
 <meta property="og:site_name" content="JerryWebBlog">
-<meta property="og:description" content="为了学习写博客,而不是为了写博客才学习… 在用hexo创建我的博客网站之前,我一直想拥有一个属于自己的博客网页,目的并不纯粹,仅仅是为了内心那一点点虚无的满足感,然而当网站搭建完成的时候,我才发现自己迷失了方向,因为网页虽然搭建完毕,我却不知道自己该写什么. 那么我最初的目的又是什么呢? 当然就是为了能有一个记录我自己学习经历的东西,我不太喜欢将学习经历记录在笔纸之间,因为我不能时时刻刻带着纸笔,">
+<meta property="og:description" content="​		现每个类都有3个部分，第一部分是构造函数内的，这是供 实例化对象复制用的，第二部分是构造函数外的，直接通过点语法添加的，这是供类使 用的，实例化对象是访问不到的，第三部分是类的原型中的，实例化对象可以通过其原 型链间接地访问到，也是为供所有实例化对象所共用的。  子类的原型对象——类式继承">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-05-19T13:07:00.000Z">
-<meta property="article:modified_time" content="2021-05-22T15:21:21.645Z">
+<meta property="article:published_time" content="2021-06-07T02:43:51.000Z">
+<meta property="article:modified_time" content="2021-06-10T11:10:29.724Z">
 <meta property="article:author" content="Jerry Web Lee">
 <meta property="article:tag" content="js,js基础,js设计模式,前端,后端,vue,react,weiChatPro,node,nodejs">
 <meta name="twitter:card" content="summary">
 
-  <meta name="keywords" content="js,js基础,js设计模式,前端,后端,vue,react,weiChatPro,node,nodejs">
+  <meta name="keywords" content="">
   <meta name="format-detection" content="telephone=no,email=no">
   <meta name="theme-color" content="#9C27B0">
 
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="application-name" content="JerryWebBlog">
-  <meta name="msapplication-starturl" content="https://jerrywebleeblog.top/about/">
+  <meta name="msapplication-starturl" content="https://jerrywebleeblog.top/2021/06/07/10/43/20210607%E7%BB%A7%E6%89%BF/">
   <meta name="msapplication-navbutton-color" content="#9C27B0">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="JerryWebBlog">
@@ -39,7 +39,7 @@
   <link rel="apple-touch-icon" href="/images/favicon.jpg">
 
   
-    <link rel="canonical" href="https://jerrywebleeblog.top/about/index.html">
+    <link rel="canonical" href="https://jerrywebleeblog.top/2021/06/07/10/43/20210607%E7%BB%A7%E6%89%BF/">
   
 
   
@@ -178,13 +178,13 @@
   <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
   <article class="mdui-card mdui-m-b-5">
     <header class="mdui-card-media">
-      <img src="/images/random/material-19.jpg" style="max-height: 450px;">
+      <img src="/images/random/material-34.jpg" style="max-height: 450px;">
       <div class="mdui-card-media-covered">
         <div class="mdui-card-primary">
-          <div class="mdui-card-primary-title">关于</div>
+          <div class="mdui-card-primary-title">继承</div>
           <div class="mdui-card-primary-subtitle">
             <i class="iconfont">&#xe697;</i> 
-            2021-05-19 / <i class="iconfont">&#xe601;</i> Jerry Web Lee
+            2021-06-07 / <i class="iconfont">&#xe601;</i> Jerry Web Lee
             
               &nbsp;&nbsp; 
               <span id="busuanzi_container_page_pv" style="display: none;">
@@ -206,38 +206,32 @@
             
             <li class="mdui-menu-item" disabled>
               
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACV0lEQVR42u3aQXLDIAwFUN//0u0B0tIvySak81hlmtTmsUCaD9fXvx4XHh4eHh4eHh7eYbwrHj886OXb118mz/ztLb254eHh4e3h/bHVxr+pLtD6+b254eHh4e3krTfuKmO99Sek6tzw8PDwTub1pnLXAuHh4eF9Om/NSOKGowsDHh4e3jiMyBvlKn79eVPWgoeHhxfzJm3u05+3nu/h4eHhBbzylaa8tS0emx1xpwwPDw8v4OUbce/qQELtBb54eHh47+LNp7h+ZbJ869JSvYKAh4eHt5OXxKy9bT1vu+fxLh4eHt4e3rxpzpcmLxVJCIKHh4e3n1c9fJqEsNXCUC0zeHh4eHt41cKwXoh8E8+XLykqeHh4eCfwqtdG71qa5O83FAY8PDy8AS85sJ9s6JMn9Jp4PDw8vD28SSRRnVb1qCyPjPHw8PD28AobbhwWzMtJHnPg4eHhncarXlrN/6taigqlAg8PD28LLz+46pFycE7Fw8PDexdvHrlWj/bXS5lfRMDDw8M7gVeNJ6pFondUlr8XDw8P71283uaeRwnzUKPZUuPh4eE9wEsChUkzXd36b75ThoeHh/cYbx4xVEPhSWkptNR4eHh4N/Gqo3fZtBfg9hYODw8P72neFY95DFGNevP/xcPDw9vPmx9u5YWk2jqXW208PDy8jbzqhp5fLMhj3LxE4eHh4X0WrxrC9qLbKLTFw8PD+yhe82g/hjXLDx4eHt5GXq8Vzr/NQ97RRQQ8PDy8LbxqBJDHtZPLBL034uHh4T3N+38DDw8PDw8PDw/vgPENy9njXyQvQpEAAAAASUVORK5CYII=">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAAC40lEQVR42u3aQW7jMBAEQP//097rAgvL3RwtbJPFU+AoEksBMuH0PJ5Hrgc2NjY2NjY2Njb2V7If8cqv//fKV09M7vn3NWt7xsbGxj6B/eZP/4trXpES3vVPtc+N9oaNjY19ADspHgnvulxdl8+EsbhnbGxsbOygwCSfJJ9PjiXY2NjY2PljklbR9eto20bY2NjY2POm0l2xwdqR42O9NGxsbOyvZ69t+rNffyDfxsbGxv5Kdj3CeHmoyNtM7fXP8cLGxsbelZ207/Mi0Y7drIUNUblaO4FhY2Nj/yB7bRN5K38tEsi/WzwdGxsbe1P2XcOXa+Fu8lLyV7N4FMHGxsbeiJ0XqklRST6fx8zY2NjY57DnhSTf+lqxTKKFG4JebGxs7J9lJy3+JPRtI9v5CE5yvMHGxsY+gZ0P5eSBax7ETlpIN6Qi2NjY2Fuw83/o23KyOFhTxhJFOIGNjY29NXuynvFqA4C2xGJjY2NjJwWsLR5rEcLaHt60ybCxsbEPYP+/w0l757r1v5aKYGNjY2/Ebts67UbbkCDHFL8AbGxs7E3Za1FuUqjao0UyQpSU0mJkBxsbG3sLdtvon4/atCFuS11sKmFjY2P/LHtSwCbjOO3xph0PwsbGxsZO2jrzAtOGE/nn2NjY2Oew81u3pSUpje0QT1tusbGxsc9hrwWr9dDMoFwld1sc2cHGxsb+cfZoCGYwdjkJHpIjDTY2NvbJ7LV2f3uQmATG7UgoNjY29t7sR7zywGAS4q7FuqPhS2xsbOwfZ7drrXmUHFTacKJ+cdjY2NibsucFbF728heRH4GwsbGxT2NPYt38gNGO2rShwptdYWNjYx/Abh+/1jBq44G20NYFDBsbG/swdt64b4tZPr7TNq2wsbGxsZOjSNsAykntfop8GxsbG3s79l1NpcnATVvwbjiKYGNjY2/BvivozYtcGy0kJfbN68PGxsbelH3OwsbGxsbGxsbGxv6a9QdQvz4QiigO3AAAAABJRU5ErkJggg==">
               
             </li>
           </ul>
         
         
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="mdui-icon material-icons">share</i></button>
+          <ul class="mdui-menu" id="share_menu">
+            <li class="mdui-menu-item">
+              <a href="http://service.weibo.com/share/share.php?appkey=&title=继承&url=https://jerrywebleeblog.top/2021/06/07/10/43/20210607%E7%BB%A7%E6%89%BF/&pic=https://jerrywebleeblog.top/images/favicon.jpg&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="http://connect.qq.com/widget/shareqq/index.html?site=JerryWebBlog&title=继承&pics=https://jerrywebleeblog.top/images/favicon.jpg&url=https://jerrywebleeblog.top/2021/06/07/10/43/20210607%E7%BB%A7%E6%89%BF/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+            </li>
+          </ul>
+        
       </div>
     </header>
     <div class="mdui-card-content mdui-typo">
-      <p>为了学习写博客,而不是为了写博客才学习…</p>
-<p>在用<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">hexo</a>创建我的博客网站之前,我一直想拥有一个属于自己的博客网页,目的并不纯粹,仅仅是为了内心那一点点虚无的满足感,然而当网站搭建完成的时候,我才发现自己迷失了方向,因为网页虽然搭建完毕,我却不知道自己该写什么.</p>
-<p>那么我最初的目的又是什么呢?</p>
-<p>当然就是为了能有一个记录我自己学习经历的东西,我不太喜欢将学习经历记录在笔纸之间,因为我不能时时刻刻带着纸笔,来记录我在某一瞬间的突发奇想;当然也可以记录在和我形影不离的手机上,但是这似乎又缺少了与他人分享的乐趣;我还可以在别的博客网站上写下自己的心情,但是又会因为某些网站死板的UI和时不时跳出的广告而心烦,而且最直接的是会产生一种寄人篱下的疏离感.所以我一直梦寐以求的就是拥有一个属于自己的博客网页.</p>
-<p>那么我就明白自己的博客应该记录些什么了.</p>
-<h2 id="写给自己"><a class="markdownIt-Anchor" href="#写给自己"></a> 写给自己</h2>
-<p>记录一段自己曾经发过的朋友圈:</p>
-<blockquote>
-<p>以前上学单纯就是为了满足为人子时父母对我的期望，也就是现在10后常说的学习是为了使我妈快乐，但是走入社会才真正感觉到自己各方面的匮乏，那种无所事事的空虚感也就随之而来，别人都在进步，而我即使原地踏步也是在一直退步，因此现在对学习这种事情产生了如饥似渴的情绪，因为学习确实是我感觉更加充实，让我感觉自己不是一直在退步，让我觉得自己离新的生活更近一些，让我的内心少一些对为我费心操劳的家人和朋友而产生的愧疚之情，让浮躁的我变得更加宁静。</p>
-</blockquote>
-<h2 id="写给家人"><a class="markdownIt-Anchor" href="#写给家人"></a> 写给家人</h2>
-<p>感谢李女士(我妈)的辛苦付出和培育,感谢陈女士一直以来的陪伴和支持,写博客的初衷是为了记录学习经历,初心却是为了你们,1Tb的数据量也写不完对你们的情感,5G的网速也承载不了对你们的倾诉.将来路远,且行且珍惜…</p>
-<h2 id="写给朋友"><a class="markdownIt-Anchor" href="#写给朋友"></a> 写给朋友</h2>
-<p>有的人从你的生命里擦肩而过,有的人停留在过去成为一个模糊的身影,有的人却永远驻扎在你的心里.我走的越来越远,又遇到了更多与我擦肩而过的人,停留在远方的身影也变得更加模糊,但是你们却永远鲜明,因为我的心与我同行…</p>
-<h2 id="写给你们"><a class="markdownIt-Anchor" href="#写给你们"></a> 写给你们</h2>
-<p>放下你们过去失去的,珍惜你们现在所拥有的,想想你们将来会获得的…</p>
-<h2 id="写给杠精"><a class="markdownIt-Anchor" href="#写给杠精"></a> 写给杠精</h2>
-<p>love see to see, no love see just get out !!</p>
+      <p>​		现每个类都有3个部分，第一部分是构造函数内的，这是供 实例化对象复制用的，第二部分是构造函数外的，直接通过点语法添加的，这是供类使 用的，实例化对象是访问不到的，第三部分是类的原型中的，实例化对象可以通过其原 型链间接地访问到，也是为供所有实例化对象所共用的。</p>
+<h2 id="子类的原型对象类式继承"><a class="markdownIt-Anchor" href="#子类的原型对象类式继承"></a> 子类的原型对象——类式继承</h2>
 
       
       <blockquote>
         
-        <strong>本文链接：</strong><br><a href="https://jerrywebleeblog.top/about/index.html">https://jerrywebleeblog.top/about/index.html</a>
+        <strong>本文链接：</strong><br><a href="https://jerrywebleeblog.top/2021/06/07/10/43/20210607%E7%BB%A7%E6%89%BF/">https://jerrywebleeblog.top/2021/06/07/10/43/20210607继承/</a>
       </blockquote>
     </div>
     <footer class="mdui-card-actions">
@@ -253,8 +247,55 @@
   <script>$("#main article .mdui-card-content img.fancybox").on("click",function(e){$.fancybox.open({src:$(this).attr("src")});});</script>
 
 
+  <nav id="paginator">
+    
+    <div class="spacer"></div>
+    
+      <a rel="next" class="extend next" href="/2021/05/23/10/58/20210523Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E5%B8%B8%E8%A7%81%E5%9C%BA%E6%99%AF%E4%B8%8B%E7%9A%84Git%E6%93%8D%E4%BD%9C/">
+        <span class="mdui-p-x-3" mdui-tooltip="{content: 'Git常用命令及常见场景下的Git操作'}">下一篇</span>
+        <button aria-label="next" class="mdui-btn mdui-btn-raised mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_forward</i></button>
+      </a>
+    
+  </nav>
 
 
+  <div id="comment" class="mdui-m-t-5">
+    <div id="vcomments"></div>
+<script src="https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js"></script>
+<script>
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var guest_info = 'nick,mail'.split(',').filter(function (item) {
+    return GUEST_INFO.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    appId: 'oAW1x27e1mh2AsPu7AumBdyx-gzGzoHsz',
+    appKey: 'sHC6RKIoiQa0mw4L7ixilf4q',
+    placeholder: '期待留下你的评论!!(可以使用md格式)',
+    notify: 'false' === 'true',
+    verify: 'false' === 'true',
+    path: '' || window.location.pathname,
+    avatar: 'identicon',
+    avatar_cdn: 'https://www.gravatar.com/avatar/',
+    meta: guest_info,
+    pageSize: '5',
+    lang: 'zh-cn',
+    pageSize: '5',
+    maxNest: '4,',
+    guestInfo: 'nick,mail',
+    count: 'true'
+  });
+</script>
+  </div>
+
+
+
+  <div style="position: fixed !important; right: 16px; top: 30%;">
+    <button class="mdui-fab mdui-fab-mini mdui-ripple" mdui-menu="{target: '#toc'}"><i class="mdui-icon material-icons">toc</i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item" disabled><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%90%E7%B1%BB%E7%9A%84%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%BC%8F%E7%BB%A7%E6%89%BF"><span class="toc-text"> 子类的原型对象——类式继承</span></a></li></ol></li>
+    </ul>
+  </div>
 </main>
   <footer id="footer" class="mdui-m-t-5 mdui-p-y-3 mdui-color-theme">
   <div class="mdui-p-y-0 mdui-text-center">
